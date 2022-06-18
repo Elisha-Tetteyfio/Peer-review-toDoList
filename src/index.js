@@ -10,11 +10,11 @@ import {
 import { removeChecked, setCheck } from './modules/interactive.js';
 
 const sync1 = document.querySelector('#sync1');
-const ic1 = `<img src="${syncIcon}" alt="o"></img>`;
-sync1.innerHTML += ic1;
+const syncImg = `<img src="${syncIcon}" alt="o"></img>`;
+sync1.innerHTML += syncImg;
 const enter1 = document.querySelector('#enter1');
-const ec1 = `<img src="${enterIcon}" alt="v" id="enterIcon"></img>`;
-enter1.innerHTML += ec1;
+const enterImg = `<img src="${enterIcon}" alt="v" id="enterIcon"></img>`;
+enter1.innerHTML += enterImg;
 const clearButton = document.createElement('button');
 clearButton.classList.add('clearButton');
 clearButton.innerHTML = 'Clear all completed';
@@ -52,15 +52,15 @@ checkLabel.forEach((el) => {
   });
 });
 
-let inp = document.querySelector('#inputTask');
+let inputs = document.querySelector('#inputTask');
 
 document.addEventListener('keypress', (e) => {
-  inp = document.querySelector('#inputTask');
-  if (e.key === 'Enter' && inp.value !== '') {
+  inputs = document.querySelector('#inputTask');
+  if (e.key === 'Enter' && inputs.value !== '') {
     e.preventDefault();
-    addTask(new Task(inp.value), allTasks);
+    addTask(new Task(inputs.value), allTasks);
     updateTasks(contentUl, allTasks);
-    clearInput(inp);
+    clearInput(inputs);
     window.location.reload();
   }
 });
@@ -80,8 +80,8 @@ deleteTask.forEach((el) => {
 
 contentUl.after(clearButton);
 
-const aa = setCheck(allTasks);
-aa.forEach((el) => {
+const completedTasks = setCheck(allTasks);
+completedTasks.forEach((el) => {
   document.querySelector(`#check${el}`).checked = true;
   allTasks[el].completed = true;
 });
